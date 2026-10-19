@@ -10,6 +10,7 @@ const _tracerName = 'dartastic_otel_libs_avalara';
 APITracer _tracer() => OTelAPI.tracerProvider().getTracer(_tracerName);
 
 class AvalaraResult {
+  /// Creates a result.
   const AvalaraResult({
     this.transactionId,
     this.code,
@@ -72,8 +73,13 @@ class AvalaraResult {
   final int? statusCode;
 }
 
+/// What a traced call returned: the value for the caller plus fields
+/// recorded on the span.
 class AvalaraCallResult<T> {
+  /// Creates a call result.
   const AvalaraCallResult({required this.value, this.result});
+
+  /// The value returned to the caller.
   final T value;
   final AvalaraResult? result;
 }
